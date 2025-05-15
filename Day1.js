@@ -164,7 +164,6 @@ addNums(2, 4, (val) => {
 
 function addHOF(a, b, c) {
   let result = a + b;
-  c(result);
 
   return () => console.log(result);
 }
