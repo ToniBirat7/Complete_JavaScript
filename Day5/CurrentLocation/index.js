@@ -1,21 +1,20 @@
 const btn = document.getElementById("btn");
 console.log(btn);
 
-const fname = document.getElementById("fname");
+function gotPosition(location) {
+  console.log("Success");
+  console.log(location);
+}
 
-btn.addEventListener("click", () => {
-  window.localStorage.setItem("Name", "Birat");
-  location.reload();
-});
+function failedToGetLocation() {
+  console.log("Got some issue!");
+}
 
-window.addEventListener("load", () => {
-  const name = localStorage.getItem("Name");
-  console.log(localStorage.getItem("Name"));
-  console.log("Name");
+btn.addEventListener("click", async () => {
+  const loc = await navigator.geolocation.getCurrentPosition(
+    gotPosition,
+    failedToGetLocation
+  );
 
-  if (!name) {
-    fname.innerText = "Unknown User";
-  } else {
-    fname.innerText = name;
-  }
+  console.log("Waiting for Location Access");
 });
